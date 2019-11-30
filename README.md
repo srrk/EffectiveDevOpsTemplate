@@ -1,0 +1,2 @@
+# EffectiveDevOpsTemplate
+Effective DevOps Template
