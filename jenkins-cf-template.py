@@ -34,7 +34,7 @@ ApplicationPort = 8080
 GithubAccount = "srrk"
 GithubAnsibleURL = "https://github.com/{}/ansible-workspace".format(GithubAccount)
 AnsiblePullCommand = \
-    "/usr/local/bin/ansible-pull -U {} {}.yml -i localhost".format(
+    "/usr/local/bin/ansible-pull -U {} {}.yml -i localhost --sleep 60".format(
         GithubAnsibleURL,
         ApplicationName
     )
@@ -71,7 +71,7 @@ t.add_resource(ec2.SecurityGroup(
 ud = Base64(Join('\n',[
     "#!/bin/bash",
     "yum install --enablerepo=epel -y git",
-    "yum install libffi-devel",
+    "yum install --enablerepo=epel -y libffi-devel openssl-devel gcc",
     "pip install --upgrade setuptools",
     "pip install ansible",
     AnsiblePullCommand,
